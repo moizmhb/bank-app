@@ -25,8 +25,23 @@ In this project we have develop a banking application API which is intregarated 
 6. Withdraw
 
 
+## Prerequisites
 
-## Click bellow for frontend
+#### 1. Install [Docker](https://www.docker.com/products/docker-desktop/)
+
+#### 2. Install [Docker Compose](https://docs.docker.com/compose/install/linux/)
+
+#### 3. Run
+    cp environment.env .env
+
+#### 4. Run the project
+    docker compose up --build
+
+#### 5. Your project will be started on [localhost](http://localhost:81)
+
+Note : Stop the mysql service
+
+## Click below for frontend
 http://localhost:80
 
 
@@ -53,23 +68,3 @@ http://localhost:80
 
 ![deposits page](/image/withdraw.png?raw=true)
 
-
-## Prerequisites
-
-#### 1. Install [Docker](https://www.docker.com/products/docker-desktop/)
-
-#### 2. Install [Docker Compose](https://docs.docker.com/compose/install/linux/)
-
-#### 3. Make sure mysql is not running at local and port 3306 is free.
-##### Linux:
-    sudo systemctl status mysql
-###### If Running:
-    sudo systemctl stop mysql
-
-#### 4. Run
-    cp environment.env .env
-
-#### 5. Run the project
-    docker compose up --build
-
-#### 6. Your project will be started on [localhost](http://localhost:81)
