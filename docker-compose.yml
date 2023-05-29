@@ -1,0 +1,54 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./bank-ui
+      
+    ports:
+      - "81:80"
+    restart: always
+    container_name: app
+    depends_on:
+      - springboot-app
+      - mysql-db
+    # environment:
+    #   SERVER_IP: 'http://springboot-app:8080'
+  springboot-app:
+    container_name: springboot-app
+    depends_on:
+      - mysql-db
+    build:
+      context: ./bank-app-server
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "${SPRINGBOOT_APP_PORT}:8181"
+    networks:
+      - bank-mysql
+    environment:
+      SPRING_APPLICATION_JSON: '${SPRING_APPLICATION_JSON}'
+    links:
+      - mysql-db
+
+  mysql-db:
+    container_name: mysql-db
+    image: mysql:8
+    restart: on-failure
+    networks:
+      - bank-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+      mysql-data:
+
+networks:
+  bank-mysql:
