@@ -1,0 +1,18 @@
+<mat-list role="list" class="flex">
+    <mat-list-item [ngClass]="{'selected': router.url == '/home' }" role="list-item" (click)="onToggleClose('home')">
+      <mat-icon matListItemIcon>home</mat-icon>
+      <div matListItemTitle>Home</div>
+    </mat-list-item>
+    <mat-list-item [ngClass]="{'selected': router.url == '/transaction' }" role="list-item" (click)="onToggleClose('transaction')">
+      <mat-icon matListItemIcon>receipt</mat-icon>
+      <div matListItemTitle>Transaction</div>
+    </mat-list-item>
+    <!-- <mat-list-item routerLink="/accomodation" (click)="onToggleClose()">
+      <mat-icon>hotel</mat-icon>
+      <span>Accomodation</span>
+    </mat-list-item>
+    <mat-list-item routerLink="/offers" (click)="onToggleClose()">
+      <mat-icon>loyalty</mat-icon>
+      <span>Offers</span>
+    </mat-list-item> -->
+  </mat-list>

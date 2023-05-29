@@ -1,0 +1,20 @@
+// .sidenav-list span {
+//     padding-left: 8px;
+//   }
+mat-list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+// mat-icon {
+//     padding-top: 3px;
+// }
+.mdc-list-item:focus .mdc-list-item:focus::before {
+    background-color: transparent !important;
+}
+
+.selected {
+    background: rgba(63,81,181,.15);
+    font-weight: bold;
+}
