@@ -1,0 +1,72 @@
+<div *ngIf="(userData$ | async) as userInfo">
+    <!-- <div class="flex flex-col md:flex-row justify-between">
+    <div class="text-2xl pl-4">
+        Hello {{userInfo.firstName}} {{userInfo.lastName}} !
+    </div>
+    <div class="text-2xl pr-4 pl-4">
+        Account Balance: {{userInfo.account.accountBalance}}
+    </div>
+    </div> -->
+    <div class="flex flex-row justify-center items-center gap-4 p-8">
+        <mat-card class="flex w-full p-4 rounded-sm">
+            <div mat-card-title class="p-4 text-violet-600">
+                Basic Details
+            </div>
+            <div class="flex flex-row gap-8 p-4">
+                <div class="flex flex-col">
+                    <div class="text-sm font-light">Account Holder Name</div>
+                    <div class="text-lg">{{userInfo.firstName}} {{userInfo.lastName}}</div>
+                </div>
+                <div class="flex flex-col">
+                    <div class="text-sm font-light">Customer Number</div>
+                    <div class="text-lg">{{userInfo.customerNumber}}</div>
+                </div>
+            </div>
+        </mat-card>
+        <mat-card class="flex w-full p-4 rounded-sm">
+            <div mat-card-title class="p-4 text-violet-600">
+                Account Information
+            </div>
+            <div class="flex flex-row gap-8 p-4">
+                <div class="flex flex-col">
+                    <div class="text-sm font-light">Account status</div>
+                    <div class="text-lg">{{userInfo.account.accountStatus}}</div>
+                </div>
+                <div class="flex flex-col">
+                    <div class="text-sm font-light">Account Type</div>
+                    <div class="text-lg">{{userInfo.account.accountType}}</div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    <div class="flex flex-row justify-center items-center gap-4 p-8">
+        <mat-card class="flex w-full p-4 rounded-sm">
+            <div mat-card-title class="p-4 text-violet-600">
+                Account Summary
+            </div>
+            <div class="flex flex-row gap-8 p-4">
+                <div class="flex flex-col">
+                    <div class="text-sm font-light">Account Number</div>
+                    <div class="text-lg">{{userInfo.account.accountNumber}}</div>
+                </div>
+                <div class="flex flex-col">
+                    <div class="text-sm font-light">Account Balance</div>
+                    <div class="text-lg">{{userInfo.account.accountBalance | currency:'USD'}}</div>
+                </div>
+                <div class="flex flex-col">
+                    <div class="text-sm font-light">Account status</div>
+                    <div class="text-lg">{{userInfo.account.accountStatus}}</div>
+                </div>
+                <div class="flex flex-col">
+                    <div class="text-sm font-light">Account Type</div>
+                    <div class="text-lg">{{userInfo.account.accountType}}</div>
+                </div>
+            </div>
+        </mat-card>
+
+    </div>
+    <div>
+
+
+    </div>
+</div>

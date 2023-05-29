@@ -1,0 +1,32 @@
+<!-- <mat-tab-group>
+  <mat-tab label="All Transactions">
+    <app-all-transactions></app-all-transactions>
+  </mat-tab>
+  <mat-tab label="Deposit" class="justify-center">
+    <div mat-card class="flex justify-center">
+      <ng-container *ngTemplateOutlet="trns; context: {$implicit: 'Deposit'}">
+      </ng-container>
+    </div>
+  </mat-tab>
+  <mat-tab label="Withdraw">
+    <div class="flex justify-center">
+      <ng-container *ngTemplateOutlet="trns; context: {$implicit: 'Withdraw'}">
+      </ng-container>
+    </div>
+  </mat-tab>
+</mat-tab-group> -->
+<div class="flex flex-row justify-end items-center p-4 gap-4">
+  <button mat-stroked-button color="primary" (click)="openDialog('Deposit')">Deposit</button>
+  <button mat-stroked-button color="accent" (click)="openDialog('Withdraw')">Withdraw</button>
+</div>
+<app-all-transactions></app-all-transactions>
+
+<ng-template #trns let-transactionType>
+  <div class="flex flex-col justify-center w-40">
+    <mat-form-field>
+      <mat-label>Amount</mat-label>
+      <input matInput [(ngModel)]="amount" type="number">
+    </mat-form-field>
+    <button mat-button (click)="depsOrWith(transactionType)">{{transactionType}}</button>
+  </div>
+</ng-template>

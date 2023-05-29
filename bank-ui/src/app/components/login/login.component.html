@@ -1,0 +1,32 @@
+<div class="flex flex-col items-center w-full h-fit py-4">
+    <h1>Banking App</h1>
+    <mat-card class="border-2 m-4 p-8 rounded-sm">
+    <h2 mat-card-title class="card-header">Login</h2>
+    <div class="flex flex-col">
+        <form class="flex flex-col w-80" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput type="text" formControlName="username" class="form-control" />
+                <mat-error *ngIf="f['username'].hasError('required')" class="invalid-feedback">
+                   Username is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="mb-3">
+                <mat-label class="form-label">Password</mat-label>
+                <input matInput type="password" formControlName="password" class="form-control" />
+                <mat-error *ngIf="f['password'].hasError('required')" class="invalid-feedback">
+                    Password is required
+                </mat-error>
+            </mat-form-field>
+            <div class="flex gap-4 justify-center">
+                <button mat-raised-button color="primary" [disabled]="!form.valid">
+                    <!-- <span  class="spinner-border spinner-border-sm me-1"></span> -->
+                    <mat-spinner *ngIf="loading"></mat-spinner>
+                    Login
+                </button>
+                <a mat-button color="primary" routerLink="/register">Register</a>
+            </div>
+        </form>
+    </div>
+</mat-card>
+</div>

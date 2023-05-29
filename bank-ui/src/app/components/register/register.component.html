@@ -1,0 +1,91 @@
+<div class="flex flex-col items-center h-fit py-4">
+    <h1>Banking App</h1>
+    <mat-card class="border-2 m-4 p-8 rounded-sm">
+        <h2 mat-card-title class="card-header">Register</h2>
+        <div class="flex flex-col">
+            <form class="flex flex-col w-80" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input matInput type="text" formControlName="firstName" class="form-control" />
+                    <mat-error *ngIf="f['firstName'].hasError('required')" class="invalid-feedback">
+                        First name is required
+                    </mat-error>
+                    <mat-error *ngIf="f['firstName'].hasError('minlength') || f['firstName'].hasError('maxlength')"
+                        class="invalid-feedback">
+                        Length should be 3 to 50 characters
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="mb-3">
+                    <mat-label class="form-label">Last Name</mat-label>
+                    <input matInput type="text" formControlName="lastName" class="form-control" />
+                    <mat-error *ngIf="f['lastName'].hasError('required')" class="invalid-feedback">
+                        Last name is required
+                    </mat-error>
+                    <mat-error *ngIf="f['lastName'].hasError('minlength') || f['lastName'].hasError('maxlength')"
+                        class="invalid-feedback">
+                        Length should be 3 to 50 characters
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="mb-3">
+                    <!-- {{f['email'].errors | json}} -->
+                    <mat-label class="form-label">Email</mat-label>
+                    <input matInput type="email" formControlName="email" class="form-control" />
+                    <mat-error *ngIf="f['email'].hasError('required')" class="invalid-feedback">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="f['email'].hasError('pattern')">
+                        Email is not valid
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="mb-3">
+                    <!-- {{f['firstName'].errors | json}} -->
+                    <mat-label class="form-label">Username</mat-label>
+                    <input matInput type="text" formControlName="username" class="form-control" />
+                    <mat-error *ngIf="f['username'].hasError('required')" class="invalid-feedback">
+                        Username is required
+                    </mat-error>
+                    <mat-error *ngIf="f['username'].hasError('minlength') || f['username'].hasError('maxlength')"
+                        class="invalid-feedback">
+                        Length should be 3 to 10 characters
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="mb-3"
+                matTooltipPosition="right"
+                    matTooltip="At least 8 characters in length, Lowercase letters, Uppercase letters, Numbers, Special characters">
+                    <mat-label class="form-label">Password</mat-label>
+                    <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                        class="form-control" />
+                    <button type="button" mat-icon-button matSuffix (click)="showPassword = !showPassword"
+                        [attr.aria-label]="'Hide password'">
+                        <mat-icon>{{showPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="f['password'].hasError('required')" class="invalid-feedback">
+                        Password is required
+                    </mat-error>
+                    <mat-error
+                        *ngIf="f['password'].hasError('pattern') && !f['password'].hasError('minlength') && !f['password'].hasError('maxlength')"
+                        class="invalid-feedback">
+                        Password is not valid
+                    </mat-error>
+                    <mat-error *ngIf="f['password'].hasError('minlength')" class="invalid-feedback">
+                        Minimum 8 characters are required
+                    </mat-error>
+                    <mat-error *ngIf="f['password'].hasError('maxlength')" class="invalid-feedback">
+                        Maximum 16 characters are allowed
+                    </mat-error>
+
+
+                </mat-form-field>
+                <div class="flex gap-4 justify-center">
+                    <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">
+                        <!-- <span  class="spinner-border spinner-border-sm me-1"></span> -->
+                        <mat-spinner *ngIf="loading"></mat-spinner>
+                        Register
+                    </button>
+                    <a mat-button color="primary" routerLink="/login">Log In</a>
+                    <!-- <button mat-button color="primary" routerLink="../register" class="btn btn-link">Register</button> -->
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

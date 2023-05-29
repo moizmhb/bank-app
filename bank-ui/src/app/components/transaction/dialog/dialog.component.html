@@ -1,0 +1,33 @@
+<div class="flex flex-col" style="padding:10px">
+    <!-- <div mat-dialog-title class="h-fit"> -->
+
+    <div class="flex flex-row justify-between items-center m-4">
+        <div class="text-lg">{{data.transactionType}} Money</div>
+
+        <button mat-icon-button mat-dialog-close="">
+            <mat-icon>close</mat-icon>
+        </button>
+        <!-- </div> -->
+    </div>
+    <div class="flex flex-col self-center justify-center items-center p-4">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Account ID</mat-label>
+                <input formControlName="accountId" matInput type="number">
+            </mat-form-field>
+            <mat-form-field style="width: 100%;">
+                <mat-label>Amount</mat-label>
+                <input formControlName="amount" matInput type="number">
+                <mat-error *ngIf="form.controls['amount'].hasError('required')">
+                    <p>Amount is required</p>
+                </mat-error>
+                <mat-error *ngIf="form.controls['amount'].hasError('min') || form.controls['amount'].hasError('max')">
+                    <p>Amount should be between 0 to 1,000,000</p>
+                </mat-error>
+            </mat-form-field>
+            <div style="width: 100%; display: flex; justify-content: center">
+                <button type="submit" style="margin-top: 40px;" color="primary" mat-raised-button>{{data.transactionType}}</button>
+            </div>
+        </form>
+    </div>
+</div>

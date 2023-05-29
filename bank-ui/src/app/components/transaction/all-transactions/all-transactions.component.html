@@ -1,0 +1,36 @@
+<div class="pl-8 text-xl">Transactions History</div>
+<div class="p-8" *ngIf="(allTransactions$ | async) as tableData">
+  <mat-table class="rounded-sm shadow-lg" *ngIf="tableData.length != 0" [dataSource]="tableData">
+    <ng-container matColumnDef="time">
+      <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.transactionDateTime | date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.transactionType}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <mat-header-cell *matHeaderCellDef> Amount ($)</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.transactionAmount}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="balance">
+      <mat-header-cell *matHeaderCellDef> Balance ($)</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.balance}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+  <mat-paginator class="paginator" *ngIf="(getAllTransactionsCount$ | async) && tableData.length != 0" #paginator class="demo-paginator" (page)="handlePageEvent($event)"
+    [length]="(getAllTransactionsCount$ | async)" [pageSize]="pageSize" [disabled]="false"
+    [showFirstLastButtons]="paginatorSettings.showFirstLastButtons"
+    [pageSizeOptions]="paginatorSettings.showPageSizeOptions ? paginatorSettings.showPageSizeOptions : []"
+    [hidePageSize]="paginatorSettings.hidePageSize" [pageIndex]="pageIndex" aria-label="Select page">
+  </mat-paginator>
+  <div class="text-center text-3xl" *ngIf="tableData.length == 0">No Records found !!</div>
+</div>
