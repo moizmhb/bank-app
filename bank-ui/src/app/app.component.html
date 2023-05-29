@@ -1,0 +1,21 @@
+
+<mat-sidenav-container fullscreen>
+
+  <mat-sidenav #sidenav position="start">
+    <app-sidenav (closeSideNav)="sidenav.close()"></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav #usernav position="end">
+    <app-usernav class="bg-white" (closeUserNav)="usernav.close()"></app-usernav>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="bg-white">
+    <app-toolbar (SideNavToggle)="sidenav.toggle()" (UserNavToggle)="usernav.toggle()"></app-toolbar>
+    <!-- <app-navtabs></app-navtabs> -->
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>
